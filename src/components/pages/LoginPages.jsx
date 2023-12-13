@@ -11,8 +11,7 @@ export default function LoginPages() {
     }
  
     const handleChange = (event) => { 
-     const newInputValue = event.target.value
-     setinputValue(newInputValue)
+     setinputValue(event.target.value)
      }
  
    // affichage
