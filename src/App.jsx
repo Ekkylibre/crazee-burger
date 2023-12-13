@@ -2,7 +2,7 @@ import './App.css'
 import LoginPages from './components/pages/LoginPages'
 
 function App() {
-  <LoginPages/>
+  return <LoginPages/>
 }
 
 export default App
