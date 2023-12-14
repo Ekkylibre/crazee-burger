@@ -7,7 +7,7 @@ import ErrorPage from './components/pages/error/ErrorPage'
 function App() {
   return <Routes>
     <Route path="/" element={<LoginPages />}/>
-    <Route path="/order" element={<OrderPages />}/>
+    <Route path="/order/:username" element={<OrderPages />}/>
     <Route path="*" element={<ErrorPage />}/>
   </Routes>
 }
