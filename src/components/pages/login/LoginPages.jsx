@@ -12,7 +12,7 @@ export default function LoginPages() {
   )
 }
 
-const LoginPageStyled = styled.div`
+const LoginPageStyled = styled.form`
   height: 100vh;
   display: flex;
   flex-direction: column;
