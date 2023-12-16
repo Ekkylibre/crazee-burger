@@ -27,7 +27,7 @@ export default function LoginForm() {
     </LoginFormStled>
 }
 
-const LoginFormStled = styled.form`
+const LoginFormStled = styled.div`
   background: green;
   display: flex;
   flex-direction: column;
