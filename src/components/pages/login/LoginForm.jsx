@@ -1,26 +1,27 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from "styled-components"
 import { BsPersonCircle } from "react-icons/bs"
 import { IoChevronForward } from "react-icons/io5"
 
 export default function LoginForm() {
     // state
-    const [inputValue, setinputValue] = useState("")
+    const [inputValue, setInputValue] = useState("")
     const navigate = useNavigate()
 
     // comportement
     const handleSubmit = (event) => {
         event.preventDefault()
+        setInputValue("")
         navigate(`order/${inputValue}`)
     }
 
     const handleChange = (event) => {
-        setinputValue(event.target.value)
+        setInputValue(event.target.value)
     }
 
     // affichage
-    return <LoginFormStled action="submit" onSubmit={handleSubmit}>
+    return <LoginFormStyled action="submit" onSubmit={handleSubmit}>
         <h1>Bienvenue chez nous !</h1>
         <hr />
         <h2>Connectez-vous</h2>
@@ -28,14 +29,14 @@ export default function LoginForm() {
             <BsPersonCircle className='icon' />
             <input value={inputValue} onChange={handleChange} type="text" placeholder="Entre votre prénom" required />
         </div>
-        <button className='button-with-icon'>
+        <button onClick={handleSubmit} className='button-with-icon'>
             <span>Accéder à mon espace</span>
             <IoChevronForward className='icon' />
         </button>
-    </LoginFormStled>
+    </LoginFormStyled>
 }
 
-const LoginFormStled = styled.form`
+const LoginFormStyled = styled.form`
   text-align: center;
   max-width: 500px;
   min-width: 400px;
