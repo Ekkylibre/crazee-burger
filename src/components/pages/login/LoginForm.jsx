@@ -35,8 +35,7 @@ export default function LoginForm() {
     </LoginFormStled>
 }
 
-const LoginFormStled = styled.div`
-  background: green;
+const LoginFormStled = styled.form`
   text-align: center;
   max-width: 500px;
   min-width: 400px;
