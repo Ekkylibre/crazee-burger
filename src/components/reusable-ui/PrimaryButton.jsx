@@ -45,11 +45,4 @@ border: 1px solid #ff9f1b;
     cursor: not-allowed;
 }
 
-.icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-    margin-left: 10px;
-}
 `;
