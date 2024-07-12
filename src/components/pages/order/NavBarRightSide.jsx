@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Profile from "./Profile";
 
 export default function NavBarRightSide({ username }) {
-    return (
-        <NavBarRightSideStyled>
-            {/* <div className="admin-button">Admin Button</div> */}
-            <Profile />
-        </NavBarRightSideStyled>
-    )
+  return (
+    <NavBarRightSideStyled>
+      {/* <div className="admin-button">Admin Button</div> */}
+      <Profile username={username} />
+    </NavBarRightSideStyled>
+  )
 }
 
 const NavBarRightSideStyled = styled.div`
