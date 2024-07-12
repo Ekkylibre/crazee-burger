@@ -6,13 +6,13 @@ export default function LoginPages() {
   // affichage
   return (
   <LoginPageStyled>
-    <Logo />
+    <Logo className="logo-login-page" />
     <LoginForm />
   </LoginPageStyled>
   )
 }
 
-const LoginPageStyled = styled.form`
+const LoginPageStyled = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -32,5 +32,9 @@ const LoginPageStyled = styled.form`
     right: 0;
     bottom: 0;
     z-index: -1;
+  }
+
+  .logo-login-page {
+    transform: scale(2.5);
   }
 `;
