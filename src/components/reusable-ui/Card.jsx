@@ -56,7 +56,7 @@ const CardStyled = styled.div`
             font-size: ${theme.fonts.P4};
             position: relative;
             bottom: 10px;
-            font-weight: ${theme.weights.bold};
+            font-weight: ${theme.fonts.weights.bold};
             color: ${theme.colors.dark};
             text-align: left;
             white-space: nowrap;
@@ -74,11 +74,11 @@ const CardStyled = styled.div`
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
-                font-weight: ${theme.weights.medium};
+                font-weight: ${theme.fonts.weights.medium};
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                font-weight: ${theme.weights.medium};
+                font-weight: ${theme.fonts.weights.medium};
                 color: ${theme.colors.primary};
             }
 
