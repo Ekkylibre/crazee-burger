@@ -69,5 +69,6 @@ const ProfileStyled = styled.div`
     height: 100%;
     font-size: ${theme.fonts.P4};
     color: ${theme.colors.greyBlue};
+    font-size: ${theme.fonts.size.P4};
   }
 `
