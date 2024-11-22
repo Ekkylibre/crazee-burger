@@ -4,26 +4,32 @@ import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import { useState } from "react";
 import OrderContext from "../../context/OrderContext";
-
+import { useParams } from "react-router-dom";
 
 export default function OrderPage() {
   // state
-  const [isModeAdmin, setisModeAdmin] = useState(false);
-  // const { username } = useParams()
+  const { username } = useParams()
+  const [isModeAdmin, setIsModeAdmin] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [currentTabSelected, setCurrentTabSelected] = useState("add")
 
-  // comportement
+  // comportements
 
   const orderContextValue = {
     isModeAdmin,
-    setisModeAdmin
+    setIsModeAdmin,
+    isCollapsed,
+    setIsCollapsed,
+    currentTabSelected,
+    setCurrentTabSelected,
   }
 
-  // affichage
+  //affichage
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <div className="container">
-          <Navbar />
+          <Navbar username={username} />
           <Main />
         </div>
       </OrderPageStyled>
@@ -39,11 +45,11 @@ const OrderPageStyled = styled.div`
   align-items: center;
 
   .container {
-  background: red;
-  height: 95vh;
-  width: 1400px;
-  display: flex;
-  flex-direction: column;
-  border-radius: ${theme.borderRadius.extraRound};
-}
-`;
+    background: red;
+    height: 95vh;
+    width: 1400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: ${theme.borderRadius.extraRound};
+  }
+`

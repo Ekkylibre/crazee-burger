@@ -1,6 +1,12 @@
 import { createContext } from "react"
 
-export default createContext ({
+export default createContext({
     isModeAdmin: false,
-    setisModeAdmin: () => {},
-})
+    setIsModeAdmin: () => {},
+    isCollapsed: false,
+    setisCollapsed: () => {},
+    isAddSelected: false,
+    setIsAddSelected: () => {},
+    isEditSelected: false,
+    setIsEditSelected: () => {},
+  })

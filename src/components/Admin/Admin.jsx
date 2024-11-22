@@ -1,22 +1,23 @@
+import { useContext } from "react"
 import styled from "styled-components"
-import AdminTabs from "./AdminTabs"
+import OrderContext from "../context/OrderContext.jsx"
 import AdminPanel from "./AdminPanel"
-import { useState } from "react"
+import AdminTabs from "./AdminTabs"
 
 export default function Admin() {
-    const [isCollapsed, setisCollapsed] = useState(false)
+  const { isCollapsed } = useContext(OrderContext)
 
-    return (
-        <AdminStyled>
-            <AdminTabs isCollapsed={isCollapsed} setisCollapsed={setisCollapsed} />
-            {!isCollapsed && <AdminPanel />}
-        </AdminStyled>
-    )
+  return (
+    <AdminStyled>
+      <AdminTabs />
+      {!isCollapsed && <AdminPanel />}
+    </AdminStyled>
+  )
 }
 
 const AdminStyled = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `
