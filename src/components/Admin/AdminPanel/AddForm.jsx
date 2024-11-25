@@ -1,8 +1,24 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import OrderContext from "../../context/OrderContext.jsx";
 
 export default function AddForm() {
+  const {handleAdd} = useContext(OrderContext)
+
+  const newProduct = {
+    id: new Date().getTime(),
+    title: "Nouveau produit",
+    imageSource: "https://ffcuisine.fr/wp-content/uploads/2024/06/1718492522_recette-facile-de-chicken-burger-gourmand-et-rapide.jpg",
+    price: 2.5,
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAdd(newProduct)
+   }
+
     return (
-        <AddFormStyled>
+        <AddFormStyled onSubmit={handleSubmit}>
             <div className="image-preview">Image Preview</div>
             <div className="input-field">
               <input type="text" placeholder="Nom" />
