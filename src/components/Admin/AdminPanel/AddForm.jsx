@@ -15,20 +15,16 @@ export default function AddForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const newProductToAdd = {
       ...newProduct,
-      id: new Date().getTime(),
+      id: crypto.randomUUID(),
     }
-
     handleAdd(newProductToAdd)
   }
 
   const handleChange = (e) => {
-    const newValue = e.target.value
-    const name = e.target.name
-    console.log("newValue:", e.target.value)
-    setNewProduct({ ...newProduct, [name]: newValue })
+    const{name, value} = e.target
+    setNewProduct({ ...newProduct, [name]: value })
   }
 
   return (
