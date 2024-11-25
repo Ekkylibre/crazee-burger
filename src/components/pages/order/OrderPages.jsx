@@ -17,38 +17,53 @@ export default function OrderPage() {
   const [menu, setMenu] = useState(fakeMenu.MEDIUM)
 
   // comportements
-
   const handleAdd = (newProduct) => {
-    const menuCopy = [...menu];
-  
-    const menuUpdated = [newProduct, ...menuCopy];
-  
-    setMenu(menuUpdated);
-  };  
+    // 1. copie du tableau
+    const menuCopy = [...menu]
 
-  const orderContextValue = {
-    isModeAdmin,
-    setIsModeAdmin,
-    isCollapsed,
-    setIsCollapsed,
-    currentTabSelected,
-    setCurrentTabSelected,
-    handleAdd,
-    menu,
-    setMenu,
+    // 2. manip de la copie du tableau
+    const menuUpdated = [newProduct, ...menuCopy]
+
+    // 3. update du state
+    setMenu(menuUpdated)
   }
 
-  //affichage
-  return (
-    <OrderContext.Provider value={orderContextValue}>
-      <OrderPageStyled>
-        <div className="container">
-          <Navbar username={username} />
-          <Main />
-        </div>
-      </OrderPageStyled>
-    </OrderContext.Provider>
-  )
+  const handleDelete = (idOfProductToDelete) => {
+    //1. copy du state
+    const menuCopy = [...menu]
+
+    //2. manip de la copie state
+    const menuUpdated = menuCopy.filter((product) => product.id !== idOfProductToDelete)
+    console.log("menuUpdated: ", menuUpdated)
+
+    //3. update du state
+    setMenu(menuUpdated)
+  }
+
+const orderContextValue = {
+  isModeAdmin,
+  setIsModeAdmin,
+  isCollapsed,
+  setIsCollapsed,
+  currentTabSelected,
+  setCurrentTabSelected,
+  handleAdd,
+  menu,
+  setMenu,
+  handleDelete,
+}
+
+//affichage
+return (
+  <OrderContext.Provider value={orderContextValue}>
+    <OrderPageStyled>
+      <div className="container">
+        <Navbar username={username} />
+        <Main />
+      </div>
+    </OrderPageStyled>
+  </OrderContext.Provider>
+)
 }
 
 const OrderPageStyled = styled.div`
