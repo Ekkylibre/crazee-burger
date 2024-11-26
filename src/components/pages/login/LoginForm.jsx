@@ -6,7 +6,6 @@ import { BsPersonCircle } from "react-icons/bs"
 import TextInput from "../../reusable-ui/TextInput"
 import Button from "../../reusable-ui/Button"
 import { theme } from "../../../theme"
-
 export default function LoginForm() {
   // state
   const [inputValue, setInputValue] = useState("")
@@ -32,7 +31,7 @@ export default function LoginForm() {
         <hr />
         <h2>Connectez-vous</h2>
       </div>
-      <div>
+      <div className="form-controls">
         <TextInput
           value={inputValue}
           onChange={handleChange}
@@ -81,5 +80,11 @@ const LoginFormStyled = styled.form`
     align-items: center;
     font-size: ${theme.fonts.size.SM};
     margin-left: 10px;
+  }
+
+  .form-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
   }
 `
