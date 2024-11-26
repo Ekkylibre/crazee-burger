@@ -42,5 +42,6 @@ const EmptyMenuStyled = styled.div`
     margin-top: 30px;
     font-size: ${theme.fonts.size.XS};
     width: auto;
+    cursor: pointer;
   }
 `
