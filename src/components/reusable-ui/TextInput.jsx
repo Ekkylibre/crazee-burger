@@ -20,10 +20,10 @@ const TextInputStyled = styled.div`
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
+  gap: 15px;
 
   .icon {
     font-size: ${theme.fonts.size.SM};
-    margin: 0 13px 0 8px;
     display: flex; // to center icon vertically
   }
 
