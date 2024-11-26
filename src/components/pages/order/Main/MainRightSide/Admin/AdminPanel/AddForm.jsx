@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import OrderContext from "../../context/OrderContext.jsx";
+import OrderContext from "../../../../../../context/OrderContext.jsx";
 import { FiCheck } from "react-icons/fi";
 
 export const EMPTY_PRODUCT = {
