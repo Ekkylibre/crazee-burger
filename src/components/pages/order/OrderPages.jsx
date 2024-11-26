@@ -14,7 +14,7 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(true)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [currentTabSelected, setCurrentTabSelected] = useState("add")
-  const [menu, setMenu] = useState(fakeMenu.MEDIUM)
+  const [menu, setMenu] = useState(fakeMenu.EMPTY)
 
   // comportements
   const handleAdd = (newProduct) => {
@@ -40,30 +40,35 @@ export default function OrderPage() {
     setMenu(menuUpdated)
   }
 
-const orderContextValue = {
-  isModeAdmin,
-  setIsModeAdmin,
-  isCollapsed,
-  setIsCollapsed,
-  currentTabSelected,
-  setCurrentTabSelected,
-  handleAdd,
-  menu,
-  setMenu,
-  handleDelete,
-}
+  const resetMenu = () => {
+    setMenu(fakeMenu.SMALL)
+  }
 
-//affichage
-return (
-  <OrderContext.Provider value={orderContextValue}>
-    <OrderPageStyled>
-      <div className="container">
-        <Navbar username={username} />
-        <Main />
-      </div>
-    </OrderPageStyled>
-  </OrderContext.Provider>
-)
+  const orderContextValue = {
+    isModeAdmin,
+    setIsModeAdmin,
+    isCollapsed,
+    setIsCollapsed,
+    currentTabSelected,
+    setCurrentTabSelected,
+    handleAdd,
+    menu,
+    setMenu,
+    handleDelete,
+    resetMenu,
+  }
+
+  //affichage
+  return (
+    <OrderContext.Provider value={orderContextValue}>
+      <OrderPageStyled>
+        <div className="container">
+          <Navbar username={username} />
+          <Main />
+        </div>
+      </OrderPageStyled>
+    </OrderContext.Provider>
+  )
 }
 
 const OrderPageStyled = styled.div`
