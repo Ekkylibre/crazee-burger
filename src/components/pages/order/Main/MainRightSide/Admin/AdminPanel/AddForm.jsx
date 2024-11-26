@@ -1,7 +1,12 @@
-import { useContext, useState } from "react";
-import styled from "styled-components";
-import OrderContext from "../../../../../../context/OrderContext.jsx";
-import { FiCheck } from "react-icons/fi";
+import { useContext, useState } from "react"
+import styled from "styled-components"
+import OrderContext from "../../../../../../context/OrderContext.jsx"
+
+import TextInput from "../../../../../../reusable-ui/TextInput"
+import Button from "../../../../../../reusable-ui/Button"
+import ImagePreview from "./ImagePreview"
+import SubmitMessage from "./SubmitMessage"
+import { getInputTextsConfig } from "./inputTextConfig"
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -11,105 +16,88 @@ export const EMPTY_PRODUCT = {
 }
 
 export default function AddForm() {
-  const { handleAdd } = useContext(OrderContext)
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
-  const [isSubmitted, setisSubmitted] = useState(false)
+  // state
+  const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // comportements
+  const handleSubmit = (event) => {
+    event.preventDefault()
     const newProductToAdd = {
       ...newProduct,
       id: crypto.randomUUID(),
     }
+
     handleAdd(newProductToAdd)
     setNewProduct(EMPTY_PRODUCT)
 
-    displaySuccesMessage()
+    displaySuccessMessage()
   }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
+  const handleChange = (event) => {
+    const { name, value } = event.target
     setNewProduct({ ...newProduct, [name]: value })
   }
 
-  const displaySuccesMessage = () => {
-    setisSubmitted(true)
+  const displaySuccessMessage = () => {
+    setIsSubmitted(true)
     setTimeout(() => {
-      setisSubmitted(false)
+      setIsSubmitted(false)
     }, 2000)
   }
 
+  const inputTexts = getInputTextsConfig(newProduct)
+
+  // affichage
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <div className="image-preview">
-        {newProduct.imageSource ? (
-          <img src={newProduct.imageSource} alt={newProduct.title} />
-        ) : (
-          <div>Aucune Image</div>
-        )}
-      </div>
-      <div className="input-field">
-        <input name="title" type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleChange} value={newProduct.title} />
-        <input name="imageSource" type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleChange} value={newProduct.imageSource} />
-        <input name="price" type="text" placeholder="Prix" onChange={handleChange} value={newProduct.price ? newProduct.price : ""} />
+      <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title} />
+      <div className="input-fields">
+        {inputTexts.map((input) => (
+          <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist" />
+        ))}
       </div>
       <div className="submit">
-        <button className="submit-button">Submit button</button>
-        {isSubmitted && (
-          <div className="submit-message">
-            <FiCheck />
-            <span>Ajouté avec succès !</span>
-          </div>
-        )}
+        <Button
+          className="submit-button"
+          label={"Ajouter un nouveau produit au menu"}
+          version="success"
+        />
+        {isSubmitted && <SubmitMessage />}
       </div>
     </AddFormStyled>
   )
 }
 
 const AddFormStyled = styled.form`
-  border: 1px solid black;
+  /* border: 2px solid black; */
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
   height: 100%;
   width: 70%;
+  grid-column-gap: 20px;
+  grid-row-gap: 8px;
 
-  .image-preview {
-    background: red;
-    grid-area: 1/1/4/2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      align-items: center;
-    }
-  }
-
-  .input-field {
-    background: blue;
-    grid-area: 1/-2/-2/-1;
+  .input-fields {
+    /* background: blue; */
+    grid-area: 1 / 2 / -2 / 3;
 
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-row-gap: 8px;
   }
 
   .submit {
-    background: green;
-    grid-area: 4/-2/-1/-1;
+    /* background: green; */
+    grid-area: 4 / -2 / -1 / -1;
     display: flex;
     align-items: center;
+    position: relative;
+    top: 3px;
 
     .submit-button {
-      width: 50%;
-    }
-
-    .submit-message {
-      width: 50%;
+      /* width: 50%; */
+      height: 100%;
     }
   }
-`;
+`

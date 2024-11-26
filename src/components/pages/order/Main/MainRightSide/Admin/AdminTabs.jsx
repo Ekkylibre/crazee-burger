@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import styled from "styled-components"
-import Tab from "../../../../../reusable-ui/Tab.jsx"
+import Tab from "../../../../../reusable-ui/Tab"
 import { FiChevronDown, FiChevronUp } from "react-icons/fi"
-import { theme } from "../../../../../../theme/index.js"
-import OrderContext from "../../../../../context/OrderContext.jsx"
+import { theme } from "../../../../../../theme"
+import OrderContext from "../../../../../context/OrderContext"
 import { tabsConfig } from "./tabsConfig"
 
 export default function AdminTabs() {

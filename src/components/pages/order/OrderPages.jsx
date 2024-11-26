@@ -4,17 +4,17 @@ import Navbar from "./Navbar/Navbar";
 import Main from "./Main/MainRightSide/Main";
 import { useState } from "react";
 import OrderContext from "../../context/OrderContext";
-import { useParams } from "react-router-dom";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "./Main/MainRightSide/Admin/AdminPanel/AddForm"
 
 
 export default function OrderPage() {
   // state
-  const { username } = useParams()
-  const [isModeAdmin, setIsModeAdmin] = useState(true)
+  const [isModeAdmin, setIsModeAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [currentTabSelected, setCurrentTabSelected] = useState("add")
-  const [menu, setMenu] = useState(fakeMenu.EMPTY)
+  const [menu, setMenu] = useState(fakeMenu.MEDIUM)
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
 
   // comportements
   const handleAdd = (newProduct) => {
@@ -41,7 +41,7 @@ export default function OrderPage() {
   }
 
   const resetMenu = () => {
-    setMenu(fakeMenu.SMALL)
+    setMenu(fakeMenu.MEDIUM)
   }
 
   const orderContextValue = {
@@ -51,11 +51,12 @@ export default function OrderPage() {
     setIsCollapsed,
     currentTabSelected,
     setCurrentTabSelected,
-    handleAdd,
     menu,
-    setMenu,
+    handleAdd,
     handleDelete,
     resetMenu,
+    newProduct,
+    setNewProduct,
   }
 
   //affichage
@@ -63,7 +64,7 @@ export default function OrderPage() {
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <div className="container">
-          <Navbar username={username} />
+          <Navbar />
           <Main />
         </div>
       </OrderPageStyled>
