@@ -1,19 +1,25 @@
 import { createContext } from "react"
 
 export default createContext({
-    isModeAdmin: false,
-    setIsModeAdmin: () => {},
-    isCollapsed: false,
-    setisCollapsed: () => {},
-    isAddSelected: false,
-    setIsAddSelected: () => {},
-    isEditSelected: false,
-    setIsEditSelected: () => {},
+  isModeAdmin: false,
+  setIsModeAdmin: () => {},
 
-    handleAddProduct: () => {},
+  isCollapsed: false,
+  setIsCollapsed: () => {},
 
-    menu : [],
-    handleAdd: () => {},
-    handleDelete: () => {},
-    resetMenu: () => {},
-  })
+  currentTabSelected: false,
+  setCurrentTabSelected: () => {},
+
+  menu: [],
+  handleAdd: () => {},
+  handleDelete: () => {},
+  handleEdit: () => {},
+  resetMenu: () => {},
+
+  newProduct: {},
+  setNewProduct: () => {},
+
+  productSelected: {},
+  setProductSelected: () => {},
+
+})

@@ -10,7 +10,7 @@ import EmptyMenuAdmin from "./Menu/EmptyMenuAdmin";
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png"
 
 export default function Menu() {
-  const { menu, isModeAdmin, handleDelete, resetMenu } = useContext(OrderContext)
+  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected } = useContext(OrderContext)
   // state
 
   // comportements
@@ -19,6 +19,13 @@ export default function Menu() {
   if (menu.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />
     return <EmptyMenuAdmin onReset={resetMenu} />
+  }
+
+  const handleClick = (idProductClicked) => { 
+    console.log("idProductClicked:", idProductClicked)
+    const productSelected = menu.find((product)=> product.id === idProductClicked)
+    console.log('productSelected:', productSelected) 
+   setProductSelected(productSelected)
   }
 
   return (
@@ -32,6 +39,7 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
             hasDeleteButton={isModeAdmin}
             onDelete={() => handleDelete(id)}
+            onClick={()=>handleClick(id)}
           />
         )
       })}
