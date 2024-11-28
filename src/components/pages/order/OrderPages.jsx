@@ -20,7 +20,7 @@ export default function OrderPage() {
   // comportements
   const handleAdd = (newProduct) => {
     // 1. copie du tableau
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
 
     // 2. manip de la copie du tableau
     const menuUpdated = [newProduct, ...menuCopy]
@@ -31,7 +31,7 @@ export default function OrderPage() {
 
   const handleDelete = (idOfProductToDelete) => {
     //1. copy du state
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
 
     //2. manip de la copie state
     const menuUpdated = menuCopy.filter((product) => product.id !== idOfProductToDelete)
