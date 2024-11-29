@@ -6,7 +6,7 @@ import { TiDelete } from "react-icons/ti"
 export default function Card({ title, imageSource, leftDescription, hasDeleteButton, onDelete, onClick, isHoverable, isSelected }) {
   return (
     <CardStyled className="produit" onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
-      <div className="card">
+      <div className="card" style={isSelected ? {background :"orange"} : {}}>
         {hasDeleteButton && (
           <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
             <TiDelete className="icon" />
@@ -33,8 +33,7 @@ export default function Card({ title, imageSource, leftDescription, hasDeleteBut
 const CardStyled = styled.div`
   ${({ $isHoverable }) => $isHoverable && hoverableStyle}
   border-radius: ${theme.borderRadius.extraRound};
-  /* border: 1px solid red; */
-  height: 330px;
+  border: 1px solid red;
 
   .card {
     background: ${theme.colors.white};
