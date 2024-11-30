@@ -1,12 +1,17 @@
-import styled, { css } from "styled-components"
-import { theme } from "../../theme"
-import Button from "./Button"
-import { TiDelete } from "react-icons/ti"
+import styled, { css } from "styled-components";
+import { theme } from "../../theme";
+import Button from "./Button";
+import { TiDelete } from "react-icons/ti";
 
 export default function Card({ title, imageSource, leftDescription, hasDeleteButton, onDelete, onClick, isHoverable, isSelected }) {
   return (
-    <CardStyled className="produit" onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
-      <div className="card" style={isSelected ? {background :"orange"} : {}}>
+    <CardStyled
+      className="produit"
+      onClick={onClick}
+      $isHoverable={isHoverable}
+      $isSelected={isSelected}
+    >
+      <div className="card">
         {hasDeleteButton && (
           <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
             <TiDelete className="icon" />
@@ -27,13 +32,13 @@ export default function Card({ title, imageSource, leftDescription, hasDeleteBut
         </div>
       </div>
     </CardStyled>
-  )
+  );
 }
 
 const CardStyled = styled.div`
   ${({ $isHoverable }) => $isHoverable && hoverableStyle}
   border-radius: ${theme.borderRadius.extraRound};
-  border: 1px solid red;
+  /* border: 1px solid red; */
 
   .card {
     background: ${theme.colors.white};
@@ -138,9 +143,9 @@ const CardStyled = styled.div`
       }
     }
 
-    ${({ $isHoverable, isSelected }) => $isHoverable && isSelected && selectedStyle}
+    ${({ $isHoverable, $isSelected }) => $isHoverable && $isSelected && selectedStyle}
   }
-`
+`;
 
 const hoverableStyle = css`
   &:hover {
@@ -149,7 +154,7 @@ const hoverableStyle = css`
     box-shadow: ${theme.shadows.orangeHighlight};
     cursor: pointer;
   }
-`
+`;
 
 const selectedStyle = css`
   background: ${theme.colors.primary};
@@ -206,4 +211,4 @@ const selectedStyle = css`
       }
     }
   }
-`
+`;
