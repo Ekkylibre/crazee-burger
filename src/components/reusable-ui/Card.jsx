@@ -39,6 +39,7 @@ const CardStyled = styled.div`
   ${({ $isHoverable }) => $isHoverable && hoverableStyle}
   border-radius: ${theme.borderRadius.extraRound};
   /* border: 1px solid red; */
+  height: 330px;
 
   .card {
     background: ${theme.colors.white};
