@@ -26,7 +26,7 @@ export default function Card({ title, imageSource, leftDescription, hasDeleteBut
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button className="primary-button" label={"Ajouter"} />
+              <Button className="primary-button" label={"Ajouter"} onClick={(e)=> e.stopPropagation()}/>
             </div>
           </div>
         </div>
