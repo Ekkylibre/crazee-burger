@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
-import Menu from "./Menu";
-import Admin from "./Admin/Admin";
+import { theme } from "../../../../theme";
+import Menu from "./MainRightSide/Menu/Menu";
+import Admin from "./MainRightSide/Admin/Admin";
 import { useContext } from "react";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../context/OrderContext";
 
 export default function Main() {
 

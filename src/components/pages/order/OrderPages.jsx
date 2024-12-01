@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
-import Main from "./Main/MainRightSide/Main";
+import Main from "./Main/Main";
 import { useRef, useState } from "react";
 import OrderContext from "../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
