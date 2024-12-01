@@ -2,12 +2,14 @@ import { useContext } from "react"
 import styled from "styled-components"
 import OrderContext from "../../../../../../context/OrderContext"
 import { theme } from "../../../../../../../theme/index"
-import { tabsConfig, getTabSelected } from "../tabsConfig"
+import { getTabsConfig, getTabSelected } from "../tabsConfig"
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product"
 
 export default function AdminPanel() {
-  const { currentTabSelected } = useContext(OrderContext)
+  const { currentTabSelected, productSelected } = useContext(OrderContext)
 
-  const tabs = tabsConfig
+  const hasAlreadyBeenClicked = productSelected !== EMPTY_PRODUCT
+  const tabs = getTabsConfig(hasAlreadyBeenClicked)
   const tabSelected = getTabSelected(tabs, currentTabSelected)
 
   return <AdminPanelStyled>{tabSelected && tabSelected.Content}</AdminPanelStyled>
@@ -15,11 +17,10 @@ export default function AdminPanel() {
 
 const AdminPanelStyled = styled.div`
   height: 240px;
-  border-bottom-left-radius: ${theme.borderRadius.extraRound};
-  border-bottom-right-radius: ${theme.borderRadius.extraRound};
   background: ${theme.colors.white};
-  border-top: 1px solid ${theme.colors.greyLight};
+  border: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
-  box-sizing: border-box;
-  padding: 30px 5%;
+  box-sizing: border-box; // ajouter ça sinon ça fait grossir le panel
+  padding: 30px 5%; // ajouter au panel et non dans les form car sinon on va devoir le mettre dans les deux form : AddForm et EditForm
+  // les 5% c'est pour les aligner avec le tab.
 `

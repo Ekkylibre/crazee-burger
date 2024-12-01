@@ -7,6 +7,7 @@ import OrderContext from "../../../../context/OrderContext";
 import EmptyMenuClient from "./Menu/EmptyMenuClient";
 import EmptyMenuAdmin from "./Menu/EmptyMenuAdmin";
 import { checkIfProductIsClicked } from "./Menu/helper";
+import { EMPTY_PRODUCT } from "../../../../../enums/product"
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png"
 
@@ -32,10 +33,12 @@ export default function Menu() {
     titleEditRef.current.focus()
   }
 
-  const handleCardDelete = (event, idProducToDelete) => { 
+  const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation()
-    handleDelete(idProducToDelete)
-   }
+    handleDelete(idProductToDelete)
+    idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
+    titleEditRef.current.focus()
+  }
 
   return (
     <MenuStyled className="menu">
