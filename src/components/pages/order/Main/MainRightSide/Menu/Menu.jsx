@@ -1,29 +1,32 @@
-import { useContext } from "react";
-import styled from "styled-components";
-import { theme } from "../../../../../../theme";
-import Card from "../../../../../reusable-ui/Card";
-import { formatPrice } from "../../../../../../utils/maths";
-import OrderContext from "../../../../../context/OrderContext";
-import EmptyMenuClient from "./EmptyMenuClient";
-import EmptyMenuAdmin from "./EmptyMenuAdmin";
-import { checkIfProductIsClicked } from "./helper";
+import { useContext } from "react"
+import styled from "styled-components"
+import OrderContext from "../../../../../context/OrderContext"
+import { theme } from "../../../../../../theme"
+import { formatPrice } from "../../../../../../utils/maths"
+import Card from "../../../../../reusable-ui/Card"
+import EmptyMenuAdmin from "./EmptyMenuAdmin"
+import EmptyMenuClient from "./EmptyMenuClient"
+import { checkIfProductIsClicked } from "./helper"
 import { EMPTY_PRODUCT } from "../../../../../../enums/product"
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png"
 
 export default function Menu() {
-  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected, productSelected, setIsCollapsed, setCurrentTabSelected, titleEditRef } = useContext(OrderContext)
+  const {
+    menu,
+    isModeAdmin,
+    handleDelete,
+    resetMenu,
+    productSelected,
+    setProductSelected,
+    setIsCollapsed,
+    setCurrentTabSelected,
+    titleEditRef,
+  } = useContext(OrderContext)
   // state
 
-  // comportements
-
-  // affichage
-  if (menu.length === 0) {
-    if (!isModeAdmin) return <EmptyMenuClient />
-    return <EmptyMenuAdmin onReset={resetMenu} />
-  }
-
-  const handleClick = async (idProductClicked) => { 
+  // comportements (gestionnaires d'événement ou "event handlers")
+  const handleClick = async (idProductClicked) => {
     if (!isModeAdmin) return
 
     await setIsCollapsed(false)
@@ -33,12 +36,23 @@ export default function Menu() {
     titleEditRef.current.focus()
   }
 
+  // affichage
+  if (menu.length === 0) {
+    if (!isModeAdmin) return <EmptyMenuClient />
+    return <EmptyMenuAdmin onReset={resetMenu} />
+  }
+
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation()
     handleDelete(idProductToDelete)
     idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
-    titleEditRef.current.focus()
+    
+    // Vérifiez si titleEditRef.current existe avant d'appeler focus()
+    if (titleEditRef.current) {
+      titleEditRef.current.focus()
+    }
   }
+  
 
   return (
     <MenuStyled className="menu">
@@ -51,7 +65,7 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
             hasDeleteButton={isModeAdmin}
             onDelete={(event) => handleCardDelete(event, id)}
-            onClick={()=>handleClick(id)}
+            onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
           />

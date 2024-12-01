@@ -38,7 +38,7 @@ export default function AddForm() {
   // affichage
   return (
     <Form product={newProduct} onSubmit={handleSubmit} onChange={handleChange}>
-      <SubmitButton isSubmitted={isSubmitted}/>
+      <SubmitButton isSubmitted={isSubmitted} />
     </Form>
   )
 }
