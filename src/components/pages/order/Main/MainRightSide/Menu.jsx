@@ -11,7 +11,7 @@ import { checkIfProductIsClicked } from "./Menu/helper";
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png"
 
 export default function Menu() {
-  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected, productSelected, setIsCollapsed, setCurrentTabSelected } = useContext(OrderContext)
+  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected, productSelected, setIsCollapsed, setCurrentTabSelected, titleEditRef } = useContext(OrderContext)
   // state
 
   // comportements
@@ -22,13 +22,14 @@ export default function Menu() {
     return <EmptyMenuAdmin onReset={resetMenu} />
   }
 
-  const handleClick = (idProductClicked) => { 
+  const handleClick = async (idProductClicked) => { 
     if (!isModeAdmin) return
-    setIsCollapsed(false)
-    setCurrentTabSelected("edit")
-    console.log("idProductClicked:", idProductClicked)
-    const productClickedOn = menu.find((product)=> product.id === idProductClicked)
-   setProductSelected(productClickedOn)
+
+    await setIsCollapsed(false)
+    await setCurrentTabSelected("edit")
+    const productClickedOn = menu.find((product) => product.id === idProductClicked)
+    await setProductSelected(productClickedOn)
+    titleEditRef.current.focus()
   }
 
   const handleCardDelete = (event, idProducToDelete) => { 
