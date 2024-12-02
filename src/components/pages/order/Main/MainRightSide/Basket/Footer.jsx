@@ -1,14 +1,13 @@
 import styled from "styled-components"
 import { theme } from "../../../../../../theme"
-import Header from "../../../../../reusable-ui/Header"
 
 export default function Footer() {
   return (
-    <Header>
+    <HeaderStyled>
       <FooterStyled>
         <span>Codé avec ❤️ et React.JS</span>
       </FooterStyled>
-    </Header>
+    </HeaderStyled>
   )
 }
 
@@ -25,3 +24,10 @@ const FooterStyled = styled.div`
     color: ${theme.colors.white};
   }
 `
+
+const HeaderStyled = styled.div`
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  height: 70px;
+  background: ${theme.colors.background_dark};
+  padding: 0 16px;
+`;
