@@ -13,7 +13,7 @@ export default function Basket() {
   const isBasketEmpty = basket.length === 0
 
   const calculateTotal = () => {
-    return basket.reduce((total, product) => total + product.price, 0)
+    return basket.reduce((total, product) => total + product.price * product.quantity, 0)
   }
 
   const amountToPay = formatPrice(calculateTotal())
