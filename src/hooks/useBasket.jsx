@@ -3,7 +3,7 @@ import { fakeBasket } from "../fakeData/fakeBasket";
 import { deepClone, find } from "../utils/array";
 
 export const useBasket = () => {
-    const [basket, setBasket] = useState(fakeBasket.SMALL);
+    const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
     const handleAddToBasket = (productToAdd) => {
         // Étape 1 : Copie du state
@@ -13,7 +13,7 @@ export const useBasket = () => {
         const existingProduct = find(productToAdd.id, basketCopy);
 
         if (existingProduct) {
-            // Cas 1 : Si le produit est déjà dans le panier, on incrémente la quantité
+            // Cas 1 : Si le produit est déjà dans le panier, on incrémente la quantitéKB
             existingProduct.quantity += 1;
         } else {
             // Cas 2 : Si le produit n'est pas dans le panier, on l'ajoute au début

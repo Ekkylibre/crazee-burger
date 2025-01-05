@@ -12,9 +12,15 @@ export default function Basket() {
   const { basket } = useContext(OrderContext)
   const isBasketEmpty = basket.length === 0
 
+  const calculateTotal = () => {
+    return basket.reduce((total, product) => total + product.price, 0)
+  }
+
+  const amountToPay = formatPrice(calculateTotal())
+
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(0)} />
+      <Total amountToPay={amountToPay} />
       {isBasketEmpty ? <EmptyBasket basket={basket}/> : <BasketProducts basket={basket}/>}
       <Footer />
     </BasketStyled>
@@ -40,4 +46,3 @@ const BasketStyled = styled.div`
     bottom: 0;
   }
 `
-
