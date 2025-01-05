@@ -13,7 +13,12 @@ export default function Basket() {
   const isBasketEmpty = basket.length === 0
 
   const calculateTotal = () => {
-    return basket.reduce((total, product) => total + product.price * product.quantity, 0)
+    return basket.reduce((total, product) => {
+      if (isNaN(product.price)) {
+        return total
+      }
+      return total + product.price * product.quantity
+    }, 0)
   }
 
   const amountToPay = formatPrice(calculateTotal())
@@ -21,7 +26,7 @@ export default function Basket() {
   return (
     <BasketStyled>
       <Total amountToPay={amountToPay} />
-      {isBasketEmpty ? <EmptyBasket basket={basket}/> : <BasketProducts basket={basket}/>}
+      {isBasketEmpty ? <EmptyBasket basket={basket} /> : <BasketProducts basket={basket} />}
       <Footer />
     </BasketStyled>
   )
