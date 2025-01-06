@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { deepClone, filter, find } from "../utils/array";
+import { deepClone, removeObjectById, findObjectById } from "../utils/array";
 
 export const useBasket = () => {
     const [basket, setBasket] = useState(fakeBasket.EMPTY);
@@ -10,7 +10,7 @@ export const useBasket = () => {
         const basketCopy = deepClone(basket);
 
         // Étape 2 : Vérification si le produit est déjà dans le panier
-        const existingProduct = find(productToAdd.id, basketCopy);
+        const existingProduct = findObjectById(productToAdd.id, basketCopy);
 
         if (existingProduct) {
             // Cas 1 : Si le produit est déjà dans le panier, on incrémente la quantitéKB
@@ -29,12 +29,12 @@ export const useBasket = () => {
     };
 
     const handleDeleteBasketProduct = (idBasketProduct) => {
-        //1. copy du state (optional because filter returns a new array )
+        //1. copy du state (optional because removeObjectById returns a new array )
         const basketCopy = deepClone(basket)
 
         //2. manip de la copie state
-        //const basketUpdated = basketCopy.filter((product) => product.id !== idBasketProduct)
-        const basketUpdated = filter(idBasketProduct, basketCopy)
+        //const basketUpdated = basketCopy.removeObjectById((product) => product.id !== idBasketProduct)
+        const basketUpdated = removeObjectById(idBasketProduct, basketCopy)
 
         //3. update du state
         setBasket(basketUpdated)

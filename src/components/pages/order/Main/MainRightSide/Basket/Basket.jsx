@@ -7,10 +7,11 @@ import OrderContext from "../../../../../context/OrderContext"
 import { useContext } from "react"
 import BasketProducts from "./BasketProducts"
 import { theme } from "../../../../../../theme"
+import { isEmpty } from "../../../../../../utils/array"
 
 export default function Basket() {
   const { basket, handleDeleteBasketProduct } = useContext(OrderContext)
-  const isBasketEmpty = basket.length === 0
+  const isBasketEmpty = isEmpty(basket)
 
   const calculateTotal = () => {
     return basket.reduce((total, product) => {
