@@ -15,7 +15,7 @@ export default function BasketCard({
   const hasTitle = !!title; // Vérifie si le titre existe
 
   return (
-    <BasketCardStyled className={className} isModeAdmin={isModeAdmin} hasTitle={hasTitle}>
+    <BasketCardStyled className={className} isModeAdmin={isModeAdmin} $hasTitle={hasTitle}>
       <div className="delete-button" onClick={onDelete}>
         <MdDeleteForever className="icon" />
       </div>
@@ -69,11 +69,11 @@ const BasketCardStyled = styled.div`
 
     .left-info {
       display: grid;
-      grid-template-rows: ${({ hasTitle }) => (hasTitle ? "60% 40%" : "1fr")};
+      grid-template-rows: ${({ $hasTitle }) => ($hasTitle ? "60% 40%" : "1fr")};
       margin-left: 21px;
 
       .title {
-        display: ${({ hasTitle }) => (hasTitle ? "flex" : "none")};
+        display: ${({ $hasTitle }) => ($hasTitle ? "flex" : "none")};
         align-items: center;
         font-family: ${theme.fonts.family.stylish};
         font-size: ${theme.fonts.size.P3};
@@ -91,7 +91,7 @@ const BasketCardStyled = styled.div`
 
       .price {
         display: flex;
-        align-items: ${({ hasTitle }) => (hasTitle ? "flex-start" : "center")};
+        align-items: ${({ $hasTitle }) => ($hasTitle ? "flex-start" : "center")};
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.medium};
         font-family: ${theme.fonts.family.openSans};

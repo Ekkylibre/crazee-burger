@@ -2,13 +2,22 @@ import styled from "styled-components"
 import BasketCard from "./BasketCard"
 import { IMAGE_COMING_SOON } from "../../../../../../enums/product"
 
-export default function BasketProducts({ basket }) {
+export default function BasketProducts({ basket, handleDeleteBasketProduct }) {
+
+  const handleDeleteProduct = (id) => {
+    handleDeleteBasketProduct(id);
+  };
+
   return (
     <BasketProductStyled>
-      {basket.map((basketProduct) => 
+      {basket.map((basketProduct) =>
       (
         <div className="basket-card" key={basketProduct.id}>
-          <BasketCard {...basketProduct} imageSource={basketProduct.imageSource ? basketProduct.imageSource : IMAGE_COMING_SOON}/>
+          <BasketCard
+            {...basketProduct}
+            imageSource={basketProduct.imageSource ? basketProduct.imageSource : IMAGE_COMING_SOON}
+            onDelete={() => handleDeleteProduct(basketProduct.id)}
+          />
         </div>
       )
       )}
