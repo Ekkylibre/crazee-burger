@@ -18,25 +18,11 @@ export default function Menu() {
     resetMenu,
     productSelected,
     setProductSelected,
-    setIsCollapsed,
-    setCurrentTabSelected,
-    titleEditRef,
     handleAddToBasket,
-    handleDeleteBasketProduct
+    handleDeleteBasketProduct,
+    handleProductSelected,
   } = useContext(OrderContext)
   // state
-
-  // comportements (gestionnaires d'événement ou "event handlers")
-  const handleClick = async (idProductClicked) => {
-    if (!isModeAdmin) return
-
-    await setIsCollapsed(false)
-    await setCurrentTabSelected("edit")
-    //const productClickedOn = menu.findObjectById((product) => product.id === idProductClicked)
-    const productClickedOn = findObjectById(idProductClicked, menu)
-    await setProductSelected(productClickedOn)
-    titleEditRef.current.focus()
-  }
 
   // affichage
   if (isEmpty(menu)) {
@@ -49,11 +35,6 @@ export default function Menu() {
     handleDelete(idProductToDelete)
     handleDeleteBasketProduct(idProductToDelete)
     idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
-
-    // Vérifiez si titleEditRef.current existe avant d'appeler focus()
-    if (titleEditRef.current) {
-      titleEditRef.current.focus()
-    }
   }
 
   const handleAddButton = (event, idProductToAdd) => {
@@ -74,7 +55,7 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
             hasDeleteButton={isModeAdmin}
             onDelete={(event) => handleCardDelete(event, id)}
-            onClick={() => handleClick(id)}
+            onClick={isModeAdmin ? () => handleProductSelected(id) : null}
             isHoverable={isModeAdmin}
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
             onAdd={(event) => handleAddButton(event, id)}
