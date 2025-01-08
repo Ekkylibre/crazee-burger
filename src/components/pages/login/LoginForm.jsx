@@ -6,6 +6,7 @@ import { BsPersonCircle } from "react-icons/bs"
 import TextInput from "../../reusable-ui/TextInput"
 import Button from "../../reusable-ui/Button"
 import { theme } from "../../../theme"
+import { createUser } from "../../../api/user"
 export default function LoginForm() {
   // state
   const [inputValue, setInputValue] = useState("")
@@ -13,8 +14,9 @@ export default function LoginForm() {
 
   // comportements
   const handleSubmit = (event) => {
-    console.log("submitted")
     event.preventDefault()
+    createUser(inputValue)
+    
     setInputValue("")
     navigate(`order/${inputValue}`)
   }
