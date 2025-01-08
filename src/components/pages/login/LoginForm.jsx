@@ -6,23 +6,22 @@ import { BsPersonCircle } from "react-icons/bs"
 import TextInput from "../../reusable-ui/TextInput"
 import Button from "../../reusable-ui/Button"
 import { theme } from "../../../theme"
-import { createUser } from "../../../api/user"
+import {  authenticateUSer } from "../../../api/user"
 export default function LoginForm() {
   // state
-  const [inputValue, setInputValue] = useState("")
+  const [username, setUsername] = useState("")
   const navigate = useNavigate()
 
   // comportements
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    createUser(inputValue)
-    
-    setInputValue("")
-    navigate(`order/${inputValue}`)
+    authenticateUSer(username)
+    setUsername("")
+    navigate(`order/${username}`)
   }
 
   const handleChange = (event) => {
-    setInputValue(event.target.value)
+    setUsername(event.target.value)
   }
 
   // affichage
@@ -35,7 +34,7 @@ export default function LoginForm() {
       </div>
       <div className="form-controls">
         <TextInput
-          value={inputValue}
+          value={username}
           onChange={handleChange}
           placeholder={"Entrez votre prénom"}
           required
