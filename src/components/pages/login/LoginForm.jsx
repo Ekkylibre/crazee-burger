@@ -7,6 +7,7 @@ import TextInput from "../../reusable-ui/TextInput"
 import Button from "../../reusable-ui/Button"
 import { theme } from "../../../theme"
 import {  authenticateUSer } from "../../../api/user"
+import Welcome from "./Welcome"
 export default function LoginForm() {
   // state
   const [username, setUsername] = useState("")
@@ -27,11 +28,7 @@ export default function LoginForm() {
   // affichage
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-      <div>
-        <h1>Bienvenue chez nous !</h1>
-        <hr />
-        <h2>Connectez-vous</h2>
-      </div>
+      <Welcome />
       <div className="form-controls">
         <TextInput
           value={username}
