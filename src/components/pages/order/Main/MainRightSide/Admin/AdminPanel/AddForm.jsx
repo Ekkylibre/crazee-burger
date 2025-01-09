@@ -7,7 +7,7 @@ import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage"
 
 export default function AddForm() {
   // state
-  const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext)
+  const { username, handleAdd, newProduct, setNewProduct } = useContext(OrderContext)
   const { isSubmitted, displaySuccessMessage } = useSuccessMessage()
 
   // comportements
@@ -18,7 +18,7 @@ export default function AddForm() {
       id: crypto.randomUUID(),
     }
 
-    handleAdd(newProductToAdd)
+    handleAdd(newProductToAdd, username)
     setNewProduct(EMPTY_PRODUCT)
 
     displaySuccessMessage()
