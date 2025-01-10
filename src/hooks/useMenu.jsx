@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { deepClone } from "../utils/array"
-import { syncBothMenu } from "../api/product"
+import { syncBothMenus } from "../api/product"
 
 export const useMenu = () => {
   const [menu, setMenu] = useState()
@@ -16,7 +16,7 @@ export const useMenu = () => {
 
     // 3. update du state
     setMenu(menuUpdated)
-    syncBothMenu(username, menuUpdated) // appel à l'API
+    syncBothMenus(username, menuUpdated) // appel à l'API
   }
 
   const handleDelete = (idOfProductToDelete, username) => {
@@ -29,7 +29,7 @@ export const useMenu = () => {
 
     //3. update du state
     setMenu(menuUpdated)
-    syncBothMenu(username, menuUpdated) // appel à l'API
+    syncBothMenus(username, menuUpdated) // appel à l'API
   }
 
   const handleEdit = (productBeingEdited) => {
@@ -46,8 +46,9 @@ export const useMenu = () => {
     setMenu(menuCopy)
   }
 
-  const resetMenu = () => {
-    setMenu(fakeMenu.MEDIUM)
+  const resetMenu = (username) => {
+    setMenu(fakeMenu.SMALL)
+    syncBothMenus(username, fakeMenu.SMALL)
   }
 
   return { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu }

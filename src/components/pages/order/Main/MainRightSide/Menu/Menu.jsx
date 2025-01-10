@@ -33,7 +33,7 @@ export default function Menu() {
   // affichage
   if (isEmpty(menu)) {
     if (!isModeAdmin) return <EmptyMenuClient />
-    return <EmptyMenuAdmin onReset={resetMenu} />
+    return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
   }
 
   const handleCardDelete = (event, idProductToDelete) => {
