@@ -9,6 +9,7 @@ import EmptyMenuClient from "./EmptyMenuClient"
 import { checkIfProductIsClicked } from "./helper"
 import { EMPTY_PRODUCT, IMAGE_COMING_SOON } from "../../../../../../enums/product"
 import { findObjectById, isEmpty } from "../../../../../../utils/array"
+import Loader from "./Loader"
 
 export default function Menu() {
   const {
@@ -24,6 +25,10 @@ export default function Menu() {
     handleProductSelected,
   } = useContext(OrderContext)
   // state
+
+  if (menu === undefined) {
+    return <Loader />
+  }
 
   // affichage
   if (isEmpty(menu)) {
