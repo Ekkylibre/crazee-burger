@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import Total from "./Total"
-import { formatPrice } from "../../../../../../utils/maths"
 import Footer from "./Footer"
 import EmptyBasket from "./EmptyBasket"
 import OrderContext from "../../../../../context/OrderContext"
@@ -11,8 +10,6 @@ import { isEmpty } from "../../../../../../utils/array"
 
 export default function Basket() {
   const { basket, menu } = useContext(OrderContext)
-
-  if (menu === undefined) return <span>Chargement...</span>
 
   return (
     <BasketStyled>

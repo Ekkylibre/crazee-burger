@@ -42,5 +42,5 @@ export const useBasket = () => {
         setBasket(basketUpdated)
     }
 
-    return { basket, handleAddToBasket, handleDeleteBasketProduct };
+    return { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct };
 };
