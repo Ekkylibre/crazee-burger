@@ -26,16 +26,6 @@ export default function Menu() {
   } = useContext(OrderContext)
   // state
 
-  if (menu === undefined) {
-    return <Loader />
-  }
-
-  // affichage
-  if (isEmpty(menu)) {
-    if (!isModeAdmin) return <EmptyMenuClient />
-    return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
-  }
-
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation()
     handleDelete(idProductToDelete, username)
@@ -47,6 +37,16 @@ export default function Menu() {
     event.stopPropagation()
     const productToAdd = findObjectById(idProductToAdd, menu)
     handleAddToBasket(productToAdd, username)
+  }
+
+  // affichage
+  if (menu === undefined) {
+    return <Loader />
+  }
+
+  if (isEmpty(menu)) {
+    if (!isModeAdmin) return <EmptyMenuClient />
+    return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
   }
 
   return (
