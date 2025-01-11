@@ -10,24 +10,14 @@ import { theme } from "../../../../../../theme"
 import { isEmpty } from "../../../../../../utils/array"
 
 export default function Basket() {
-  const { basket, handleDeleteBasketProduct } = useContext(OrderContext)
-  const isBasketEmpty = isEmpty(basket)
+  const { basket, menu } = useContext(OrderContext)
 
-  const calculateTotal = () => {
-    return basket.reduce((total, product) => {
-      if (isNaN(product.price)) {
-        return total
-      }
-      return total + product.price * product.quantity
-    }, 0)
-  }
-
-  const amountToPay = formatPrice(calculateTotal())
+  if (menu === undefined) return <span>Chargement...</span>
 
   return (
     <BasketStyled>
-      <Total amountToPay={amountToPay} />
-      {isBasketEmpty ? <EmptyBasket basket={basket} /> : <BasketProducts basket={basket} handleDeleteBasketProduct={handleDeleteBasketProduct}/>}
+      <Total />
+      {isEmpty(basket) ? <EmptyBasket isLoading={menu === undefined} /> : <BasketProducts />}
       <Footer />
     </BasketStyled>
   )

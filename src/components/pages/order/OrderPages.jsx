@@ -10,7 +10,7 @@ import { useBasket } from "../../../hooks/useBasket";
 import { findObjectById } from "../../../utils/array";
 import { getUser } from "../../../api/user";
 import { useParams } from "react-router-dom";
-import { getMenu } from "../../../api/product";
+import { initialiseUserSession } from "./helpers/initialiseUserSession";
 
 export default function OrderPage() {
   // state
@@ -21,7 +21,7 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const titleEditRef = useRef()
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu } = useMenu()
-  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket()
+  const { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct } = useBasket()
   const { username } = useParams()
 
   const handleProductSelected = async (idProductClicked) => {
@@ -32,14 +32,9 @@ export default function OrderPage() {
     titleEditRef.current.focus()
   }
   
-  const initaliseMenu = async () => {
-    const menuReceived = await getMenu(username);
-    setMenu(menuReceived)
-  }
-
   useEffect(() => {
-   initaliseMenu();
-  }, []);
+    initialiseUserSession(username, setMenu, setBasket)
+  }, [])
 
   const orderContextValue = {
     username,

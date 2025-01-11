@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { fakeBasket } from "../fakeData/fakeBasket";
 import { deepClone, removeObjectById, findObjectById } from "../utils/array";
 import { setLocalStorage } from "../utils/window";
 
 export const useBasket = () => {
-    const [basket, setBasket] = useState(fakeBasket.EMPTY);
+    const [basket, setBasket] = useState([]);
 
     const handleAddToBasket = (productToAdd, username) => {
         // Étape 1 : Copie du state
