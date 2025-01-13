@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { theme } from "../../../../../../theme"
+import { theme } from "../../../../../../../theme"
 
-export default function Footer() {
+export default function BasketFooter() {
   return (
     <HeaderStyled>
       <FooterStyled>
