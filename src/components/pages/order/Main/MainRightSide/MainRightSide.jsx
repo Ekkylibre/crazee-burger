@@ -1,9 +1,11 @@
 import { useContext } from "react"
-import styled from "styled-components"
 import OrderContext from "../../../../context/OrderContext"
 import { theme } from "../../../../../theme"
 import Admin from "./Admin/Admin"
 import Menu from "./Menu/Menu"
+import { TransitionGroup, CSSTransition } from "react-transition-group"
+import { adminAnimation } from "../../../../../theme/animations"
+import styled from "styled-components"
 
 export default function MainRightSide() {
   const { isModeAdmin } = useContext(OrderContext)
@@ -11,7 +13,13 @@ export default function MainRightSide() {
   return (
     <MainRightSideStyled>
       <Menu />
-      {isModeAdmin && <Admin />}
+      {isModeAdmin &&
+        <TransitionGroup className="transition-group">
+          <CSSTransition appear={true} classNames="admin" timeout={500}>
+            <Admin />
+          </CSSTransition>
+        </TransitionGroup>
+      }
     </MainRightSideStyled>
   )
 }
@@ -22,4 +30,6 @@ const MainRightSideStyled = styled.div`
   display: grid;
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
+
+  ${adminAnimation}
 `
