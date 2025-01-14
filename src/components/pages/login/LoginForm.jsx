@@ -1,40 +1,50 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { IoChevronForward } from "react-icons/io5"
-import TextInput from '../../reusable-ui/TextInput'
-import { BsPersonCircle } from 'react-icons/bs'
-import PrimaryButton from '../../reusable-ui/PrimaryButton'
-import { theme } from '../../../theme'
-
+import { BsPersonCircle } from "react-icons/bs"
+import TextInput from "../../reusable-ui/TextInput"
+import Button from "../../reusable-ui/Button"
+import { theme } from "../../../theme"
+import {  authenticateUSer } from "../../../api/user"
+import Welcome from "./Welcome"
 export default function LoginForm() {
-    // state
-    const [inputValue, setInputValue] = useState("")
-    const navigate = useNavigate()
+  // state
+  const [username, setUsername] = useState("")
+  const navigate = useNavigate()
 
-    // comportement
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        setInputValue("")
-        navigate(`order/${inputValue}`)
-    }
+  // comportements
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    authenticateUSer(username)
+    setUsername("")
+    navigate(`order/${username}`)
+  }
 
-    const handleChange = (event) => {
-        setInputValue(event.target.value)
-    }
+  const handleChange = (event) => {
+    setUsername(event.target.value)
+  }
 
-    // affichage
-    return <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-        <div>
-            <h1>Bienvenue chez nous !</h1>
-            <hr />
-            <h2>Connectez-vous</h2>
-        </div>
-        <div>
-            <TextInput value={inputValue} onChange={handleChange} placeholder={"Entrez votre prénom"} Icon={<BsPersonCircle className='icon' />} />
-            <PrimaryButton label={"Accéder à mon espace"} Icon={<IoChevronForward className='icon' />} />
-        </div>
+  // affichage
+  return (
+    <LoginFormStyled action="submit" onSubmit={handleSubmit}>
+      <Welcome />
+      <div className="form-controls">
+        <TextInput
+          value={username}
+          onChange={handleChange}
+          placeholder={"Entrez votre prénom"}
+          required
+          Icon={<BsPersonCircle className="icon" />}
+        />
+
+        <Button
+          label={"Accéder à mon espace"}
+          Icon={<IoChevronForward className="icon" />}
+        />
+      </div>
     </LoginFormStyled>
+  )
 }
 
 const LoginFormStyled = styled.form`
@@ -47,26 +57,31 @@ const LoginFormStyled = styled.form`
   font-family: "Amatic SC", cursive;
 
   hr {
-    border: 1.5px solid ${theme.colors.loginline};
+    border: 1.5px solid ${theme.colors.loginLine};
     margin-bottom: ${theme.gridUnit * 5}px;
   }
 
   h1 {
     color: ${theme.colors.white};
-    font-size: ${theme.fonts.P5};
+    font-size: ${theme.fonts.size.P5};
   }
-  
+
   h2 {
     margin: 20px 10px 10px;
     color: ${theme.colors.white};
-    font-size: ${theme.fonts.P4};
+    font-size: ${theme.fonts.size.P4};
   }
 
   .icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: ${theme.fonts.P0};
-    margin-left: 10px;
-}
-`;
+    font-size: ${theme.fonts.size.SM};
+  }
+
+  .form-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+`

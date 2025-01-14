@@ -4,11 +4,11 @@ import Logo from "../../../reusable-ui/Logo";
 import { theme } from "../../../../theme";
 import { refreshPage } from "../../../../utils/window";
 
-export default function Navbar({ username }) {
+export default function Navbar() {
   return (
     <NavbarStyled>
       <Logo className="logo-order-page" onClick={() => refreshPage()} />
-      <NavBarRightSide username={username} />
+      <NavBarRightSide />
     </NavbarStyled>
   );
 }
@@ -21,7 +21,7 @@ const NavbarStyled = styled.nav`
   padding: 0 20px;
   border-top-left-radius: ${theme.borderRadius.extraRound};
   border-top-right-radius: ${theme.borderRadius.extraRound};
-  border-bottom: 10px solid ${theme.colors.greyLight};
+  border-bottom: 1px solid ${theme.colors.greyLight};
 
   .logo-order-page {
     cursor: pointer;
