@@ -6,7 +6,7 @@ import { BsPersonCircle } from "react-icons/bs"
 import TextInput from "../../reusable-ui/TextInput"
 import Button from "../../reusable-ui/Button"
 import { theme } from "../../../theme"
-import {  authenticateUSer } from "../../../api/user"
+import { authenticateUser } from "../../../api/user"
 import Welcome from "./Welcome"
 export default function LoginForm() {
   // state
@@ -16,9 +16,9 @@ export default function LoginForm() {
   // comportements
   const handleSubmit = async (event) => {
     event.preventDefault()
-    authenticateUSer(username)
+    const userReceived = await authenticateUser(username)
     setUsername("")
-    navigate(`order/${username}`)
+    navigate(`order/${userReceived.username}`)
   }
 
   const handleChange = (event) => {
