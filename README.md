@@ -13,12 +13,6 @@ This project is a web application built with **React** and **Vite**, designed fo
 - 🎭 **Animated Transitions**: Uses React Transition Group.
 - 🎨 **Design**: Styled with Styled Components.
 
-## 📁 Project Structure
-
-- `src/components/pages/login`: Login and welcome pages.
-- `src/components/pages/order`: Order management pages (menu, cart, navbar...).
-- `src/components/pages/error`: Error page for unknown routes.
-- `src/assets`, `src/theme`, `src/utils`, `src/api`, etc.: Utilities, themes, fake data, etc.
 
 ## 🚀 Scripts
 
@@ -26,20 +20,6 @@ This project is a web application built with **React** and **Vite**, designed fo
 - `yarn build`: Generates the production version.
 - `yarn preview`: Previews the production version.
 - `yarn lint`: Analyzes the code with ESLint.
-
-## 📦 Main Dependencies
-
-- `react`, `react-dom`
-- `react-router-dom`
-- `styled-components`
-- `firebase`
-- `react-toastify`
-- `react-transition-group`
-- `react-icons`
-
-## 🌐 Deployment
-
-The project is ready to be deployed on **Vercel**. The `vercel.json` file manages route redirection for a SPA.
 
 ## 📋 Installation
 
@@ -56,6 +36,7 @@ The project is ready to be deployed on **Vercel**. The `vercel.json` file manage
    ```bash
    yarn dev
    ```
+4. Open http://localhost:3000 in your browser.
 
 ## 🛠️ Technologies Used
 
